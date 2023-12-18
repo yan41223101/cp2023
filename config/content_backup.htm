@@ -326,7 +326,76 @@ void draw_red_sun(gdImagePtr img, int x, int y, int size, int color) {
 <h1>W7</h1>
 <p><span>mass-spring-damper 系統</span></p>
 <p><span>質量-彈簧-阻尼器模型由分佈在整個物件中並透過彈簧和阻尼器網路互連的離散質量節點組成。該模型非常適合對具有複雜材料屬性（例如非線性和黏彈性）的物件進行建模。MATLAB等軟體套件可用於運行此類模型的模擬。除了工程模擬之外，這些系統也應用於電腦圖形和電腦動畫。<br/>控制彈簧-質量-阻尼器 系統的振動是工程教科書中一個深入研究的問題。振盪響應由兩個基本參數 tau 和 zeta 控制，這兩個參數設定振盪的振幅和頻率。這兩個參數是質量、彈簧剛度和阻尼的簡單函數。根據彈簧質量阻尼器理論，如果 tau 和 zeta 的值設定相同，則兩輛不同重量和彈簧剛度的自行車將回溯完全相同的懸吊響應曲線。 <br/>這項基本物理原理為從一輛自行車到另一輛自行車提供了衡量懸吊性能的直接途徑，並透過調整阻尼來補償重量和彈簧剛度的差異，從而保持相同的懸吊響應、感覺和行為。<br/></span><img alt="" height="200" src="/images/計概w7.PNG" width="372"/><img alt="" height="150" src="/images/計概w7-1.PNG" width="142"/></p>
-<h1>W11</h1>
+<h1>W8</h1>
+<p><span>Euler's Method 數值分析相關資料</span></p>
+<p><br/>在數學和計算機科學中，歐拉方法（英語：Euler method），是一種一階數值方法，用以對給定初值的常微分方程求解。歐拉方法是常微分方程數值方法中最基本的顯式方法；也是一個一階方法，意味著其局部截斷誤差正比於步長的平方，並且其全局截斷誤差正比於步長。</p>
+<p><img alt="" height="200" src="/images/計概W8.PNG" width="252"/> </p>
+<p>範例: </p>
+<p><span>1. 一階微分方程式。 explicit。</span></p>
+<pre>d
+—— f(t) = f(t) + 1
+dt
+</pre>
+<pre>(f(t) - f(t-Δt)) / Δt = f(t) + 1
+(f[i] - f[i-1]) / Δt = f[i-1] + 1
+(f[i] - f[i-1]) = (f[i-1] + 1) ⋅ Δt
+f[i] = f[i-1] + (f[i-1] + 1) ⋅ Δt<br/><br/></pre>
+<ol>
+<li><span class="type">float</span><span> f[</span><span class="value">1000</span><span>]; </span><span class="comment">// 解</span></li>
+<li><span class="type">float</span><span> Δt = </span><span class="value">0.01</span><span>; </span><span class="comment">// 取樣間距</span></li>
+<li><span class="type">float</span><span> t0 = </span><span class="value">0</span><span>, f0 = </span><span class="value">2</span><span>; </span><span class="comment">// 初始條件 f(t0) = f0</span></li>
+<li></li>
+<li><span class="type">void</span><span> first_order()</span></li>
+<li><span>{</span></li>
+<li><span> f[</span><span class="value">0</span><span>] = f0;</span></li>
+<li><span> </span><span class="keyword">for</span><span> (</span><span class="type">int</span><span> i=</span><span class="value">1</span><span>; i&lt;</span><span class="value">1000</span><span>; ++i)</span></li>
+<li><span> f[i] = f[i-</span><span class="value">1</span><span>] + (f[i-</span><span class="value">1</span><span>] + </span><span class="value">1</span><span>) * Δt;</span></li>
+<li></li>
+<li><span> </span><span class="comment">// 印出t、f(t)、正確解答</span></li>
+<li><span> </span><span class="keyword">for</span><span> (</span><span class="type">int</span><span> i=</span><span class="value">0</span><span>; i&lt;</span><span class="value">1000</span><span>; ++i)</span></li>
+<li><span> {</span></li>
+<li><span> </span><span class="type">float</span><span> t = t0 + i * Δt;</span></li>
+<li><span> </span><span class="type">float</span><span> ans = exp(t) * </span><span class="value">3</span><span> - </span><span class="value">1</span><span>;</span></li>
+<li><span> cout &lt;&lt; t &lt;&lt; </span><span class="string">' '</span><span> &lt;&lt; f[i] &lt;&lt; </span><span class="string">' '</span><span> &lt;&lt; ans &lt;&lt; </span><span class="string">'\n'</span><span>;</span></li>
+<li><span> }</span></li>
+<li><span>}</span></li>
+</ol>
+<pre>2. 二階微分方程式。explicit。</pre>
+<pre>d²         d
+——— f(t) = —— f(t) - f(t)
+dt²        dt
+</pre>
+<pre>(f(t+Δt) - 2f(t) + f(t-Δt)) / (Δt)² = (f(t) + f(t-Δt)) / Δt - f(t)
+(f[i+1] - 2f[i] + f[i-1]) / (Δt)² = (f[i] + f[i-1]) / Δt - f[i]
+f[i+1] = (2f[i] - f[i-1]) + (f[i] + f[i-1]) ⋅ Δt - f[i] ⋅ (Δt)²
+f[i] = (2f[i-1] - f[i-2]) + (f[i-1] + f[i-2]) ⋅ Δt - f[i-1] ⋅ (Δt)²<br/><br/></pre>
+<ol>
+<li><span class="type">float</span><span> f[</span><span class="value">1000</span><span>];</span></li>
+<li><span class="type">float</span><span> Δt = </span><span class="value">0.01</span><span>;</span></li>
+<li><span class="type">float</span><span> t0 = </span><span class="value">0</span><span>, f0 = </span><span class="value">0</span><span>, f1 = </span><span class="value">0.1</span><span>;</span></li>
+<li></li>
+<li><span class="type">void</span><span> second_order()</span></li>
+<li><span>{</span></li>
+<li><span> f[</span><span class="value">0</span><span>] = f0; </span><span class="comment">// f(t0) = f0</span></li>
+<li><span> f[</span><span class="value">1</span><span>] = f1; </span><span class="comment">// f(t0+Δt) = f1</span></li>
+<li><span> </span><span class="keyword">for</span><span> (</span><span class="type">int</span><span> i=</span><span class="value">2</span><span>; i&lt;</span><span class="value">1000</span><span>; ++i)</span></li>
+<li><span> f[i] = (</span><span class="value">2</span><span> * f[i-</span><span class="value">1</span><span>] - f[i-</span><span class="value">2</span><span>])</span></li>
+<li><span> + (f[i-</span><span class="value">1</span><span>] + f[i-</span><span class="value">2</span><span>]) * Δt</span></li>
+<li><span> - f[i-</span><span class="value">1</span><span>] * Δt * Δt;</span></li>
+<li></li>
+<li><span> </span><span class="comment">// 印出t、f(t)、正確解答</span></li>
+<li><span> </span><span class="keyword">for</span><span> (</span><span class="type">int</span><span> i=</span><span class="value">0</span><span>; i&lt;</span><span class="value">1000</span><span>; ++i)</span></li>
+<li><span> {</span></li>
+<li><span> </span><span class="type">float</span><span> t = t0 + i * Δt;</span></li>
+<li><span> </span><span class="type">float</span><span> ans = f1 * exp((t-Δt)/</span><span class="value">2</span><span>)</span></li>
+<li><span> * sin(t*sqrt(</span><span class="value">3</span><span>)/</span><span class="value">2</span><span>)</span></li>
+<li><span> / sin(Δt*sqrt(</span><span class="value">3</span><span>)/</span><span class="value">2</span><span>);</span></li>
+<li><span> cout &lt;&lt; t &lt;&lt; </span><span class="string">' '</span><span> &lt;&lt; f[i] &lt;&lt; </span><span class="string">' '</span><span> &lt;&lt; ans &lt;&lt; </span><span class="string">'\n'</span><span>;</span></li>
+<li><span> }</span></li>
+<li><span>}</span></li>
+</ol>
+<pre><br/><br/></pre>
+<p></p>
 <h1>W13</h1>
 <p>這堂課對於零基礎的我來說，有點困難，非常感謝同學平常的幫忙讓我跟得上教學進度，往後我也會繼續認真聽課，多運用影片教成學習，還有上課如有不會的地方會及時提問，謝謝老師！</p>
 <h1>Brython</h1>
