@@ -1,59 +1,66 @@
+// https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China
+// 內政部國旗參考資料: https://www.moi.gov.tw/cp.aspx?n=10621
+// cc roc_flag_in_gd.c -lgd -lm to link with gd and math library
+// https://www.rapidtables.com/web/color/RGB_Color.html
+// 幾何形狀著色與繪圖練習
+// 以下 gd 繪圖程式嘗試畫出 ROC 國旗, 請根據下列程式內容完成後續的國旗繪圖
 #include <stdio.h>
 #include <gd.h>
 #include <math.h>
 
-void draw_japan_flag(gdImagePtr img);
-void draw_red_sun(gdImagePtr img, int x, int y, int size, int color);
+void draw_roc_flag(gdImagePtr img);
+void draw_white_sun(gdImagePtr img, int x, int y, int size, int color);
 
 int main() {
-    int originalWidth = 1200;
-    int originalHeight = (int)(originalWidth * 2.0 / 3.0);
-    gdImagePtr img = gdImageCreateTrueColor(originalWidth, originalHeight);
+    // width 3: height 2
+    int width = 1200;
+    // 國旗長寬比為 3:2
+    int height = (int)(width*2.0 / 3.0);
+
+    gdImagePtr img = gdImageCreateTrueColor(width, height);
     gdImageAlphaBlending(img, 0);
 
-    draw_japan_flag(img);
+    draw_roc_flag(img);
 
-    // 新的宽度和高度以适应 "images" 文件夹
-    int newWidth = 600;
-    int newHeight = (int)(newWidth * 2.0 / 3.0);
-
-    // 创建新图像并进行缩放
-    gdImagePtr resizedImage = gdImageCreateTrueColor(newWidth, newHeight);
-    gdImageAlphaBlending(resizedImage, 0);
-    gdImageCopyResampled(resizedImage, img, 0, 0, 0, 0, newWidth, newHeight, originalWidth, originalHeight);
-
-  FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
+    FILE *outputFile = fopen("roc_flag_in_gd.png", "wb");
     if (outputFile == NULL) {
         fprintf(stderr, "Error opening the output file.\n");
         return 1;
     }
-    gdImagePng(resizedImage, outputFile);
+    gdImagePngEx(img, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(img);
-    gdImageDestroy(resizedImage);
-
     return 0;
 }
 
-void draw_japan_flag(gdImagePtr img) {
+void draw_roc_flag(gdImagePtr img) {
     int width = gdImageSX(img);
     int height = gdImageSY(img);
+    int red, white, blue;
+    // 白日位於青天面積正中央, 因此中心點座標為長寬各 1/4 處
+    int center_x = (int)(width/4);
+    int center_y = (int)(height/4);
+    // gdImageFilledEllipse 需以長寬方向的 diameter 作圖
+    // 由於中央白日圓形的半徑為青天寬度的 1/8
+    // 因此中央白日圓形的直徑為青天寬度的 1/4, 也就是國旗寬度的 1/8
+    // 而且白日十二道光芒的外圍圓形其半徑也是國旗寬度的1/8
+    int sun_radius = (int)(width/8);
+    // 中央白日圓形的直徑等於十二道光芒外圍圓形的半徑
+    int white_circle_dia = sun_radius;
+    // 中央藍色圓形半徑為中央白日的 1又 2/15
+    int blue_circle_dia = white_circle_dia +  white_circle_dia*2/15;
+    // 根據 https://www.moi.gov.tw/cp.aspx?n=10621 訂定國旗三種顏色值
+    red = gdImageColorAllocate(img, 255, 0, 0); // 紅色
+    white = gdImageColorAllocate(img, 255, 255, 255); // 白色
+    blue = gdImageColorAllocate(img, 0, 0, 149); // 藍色
+    // 根據畫布大小塗上紅色長方形區域
+    gdImageFilledRectangle(img, 0, 0, width, height, red);
+    // 青天面積為整面國旗的 1/4, 也是採用長方形塗色
+    gdImageFilledRectangle(img, 0, 0, (int)(width/2.0), (int)(height/2.0), blue);
+    // 先設法以填色畫出六個白色堆疊菱形
+    draw_white_sun(img, center_x, center_y, sun_radius, white);
+    // 利用一個藍色大圓與白色小圓畫出藍色環狀
+    gdImageFilledEllipse(img, center_x, center_y, blue_circle_dia, blue_circle_dia, blue);
+    gdImageFilledEllipse(img, center_x, center_y, white_circle_dia, white_circle_dia, white);
 
-    // 创建一个白色背景
-    int white = gdImageColorAllocate(img, 255, 255, 255);
-    gdImageFilledRectangle(img, 0, 0, width - 1, height - 1, white);
-
-    // 绘制红色圆圈（太阳）
-    int red = gdImageColorAllocate(img, 255, 0, 0);
-    int center_x = width / 2;
-    int center_y = height / 2;
-    int radius = (int)((width * 2) / 3);
-    draw_red_sun(img, center_x, center_y, radius, red);
-}
-
-void draw_red_sun(gdImagePtr img, int x, int y, int size, int color) {
-  // 減小 size 的值,例如將他的值減半
-  size = size / 2;
-    gdImageArc(img, x, y, size, size, 0, 360, color);
-    gdImageFillToBorder(img, x, y, color, color);
 }
