@@ -683,6 +683,26 @@ printf("\n");
 return 0;
 }</pre>
 <p><img alt="" height="150" src="/images/replit-9.png" width="612"/><br/><br/></p>
+<h2>10.</h2>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#define N 10
+
+int main() {
+  char chr;
+  printf("\n");
+
+  // Loop through ASCII values from 65 ('A') to 122 ('z')
+  for (chr = 65; chr &lt;= 122; chr = chr + 1) {
+    // Exclude characters between 'Z' and 'a'
+    if (chr &gt; 90 &amp;&amp; chr &lt; 97)
+      continue;
+
+    printf("[%2d-%c] ", chr, chr);
+  }
+
+  return 0;
+}</pre>
+<p><img alt="" height="150" src="/images/replit-10.png" width="517"/></p>
 <h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
