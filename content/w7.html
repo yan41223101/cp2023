@@ -142,54 +142,10 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w4 << <a href='w4.html'>Previous</a> <a href='w6.html'>Next</a> >> w6<br /><h1>w5</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
-// https://blog.csdn.net/weixin_38468077/article/details/101069365
-// http://www.gnuplot.info/demo/
-// https://github.com/sysprog21/rv32emu
-// https://github.com/sysprog21/semu 
-// https://docs.google.com/presentation/d/14N0cWG2SnBSqhc2cLF0_2VerB9FF8JN3
-// https://cs61c.org/fa23/
-// https://greenteapress.com/wp/think-python-2e/
-// https://github.com/ecalvadi/c99-examples
-// https://github.com/gouravthakur39/beginners-C-program-examples
-// https://github.com/ergenekonyigit/Numerical-Analysis-Examples
-// https://www.che.ncku.edu.tw/facultyweb/changct/html/teaching/CPPandMATLAB/Past/pdf%20Files/Chap02-Ling.pdf
-// https://gteceducation.com.sg/Brochures/PROGRAMMING/C%20PROGRAMMING%20FULL.pdf
-// https://jsommers.github.io/cbook/cbook.pdf
-// https://jsommers.github.io/cbook/index.html
-// http://student.itee.uq.edu.au/courses/csse2310/CProgrammingNotes.pdf
-// http://cslibrary.stanford.edu/101/EssentialC.pdf
-// https://publications.gbdirect.co.uk/c_book/
-// https://www.fossil-scm.org/fossil-book/doc/2ndEdition/fossilbook.pdf
-// ***** execute on replit 
-// cd downloads
-// cc gnuplot_ex1.c -o gnuplot_ex1
-// ./gnuplot_ex1
-#include &lt;stdio.h&gt;
-
-// 主函式
-int main() {
-    // Start a Gnuplot process using popen
-    FILE *gnuplotPipe = popen("gnuplot -persistent", "w");
-    if (!gnuplotPipe) {
-        fprintf(stderr, "Failed to start Gnuplot.\n");
-        return 1;
-    }
-
-    // Use Gnuplot plotting commands, specify font and output as PNG
-    fprintf(gnuplotPipe, "set terminal png font 'default,10' size 800,400\n");
-    fprintf(gnuplotPipe, "set output './../images/gnuplot_ex1.png'\n");
-    fprintf(gnuplotPipe, "plot sin(x)");
-    // Close popen
-    pclose(gnuplotPipe);
-
-    return 0;
-}
-
-</pre>
-<p><img alt="" height="200" src="./../images/gnuplot_ex1.png" width="400"/></p>
-<br />w4 << <a href='w4.html'>Previous</a> <a href='w6.html'>Next</a> >> w6</div>
+    <div id="tipue_search_content">w6 << <a href='w6.html'>Previous</a> <a href='W8.html'>Next</a> >> W8<br /><h1>w7</h1>
+<p><span>mass-spring-damper 系統</span></p>
+<p><span>質量-彈簧-阻尼器模型由分佈在整個物件中並透過彈簧和阻尼器網路互連的離散質量節點組成。該模型非常適合對具有複雜材料屬性（例如非線性和黏彈性）的物件進行建模。MATLAB等軟體套件可用於運行此類模型的模擬。除了工程模擬之外，這些系統也應用於電腦圖形和電腦動畫。<br/>控制彈簧-質量-阻尼器 系統的振動是工程教科書中一個深入研究的問題。振盪響應由兩個基本參數 tau 和 zeta 控制，這兩個參數設定振盪的振幅和頻率。這兩個參數是質量、彈簧剛度和阻尼的簡單函數。根據彈簧質量阻尼器理論，如果 tau 和 zeta 的值設定相同，則兩輛不同重量和彈簧剛度的自行車將回溯完全相同的懸吊響應曲線。 <br/>這項基本物理原理為從一輛自行車到另一輛自行車提供了衡量懸吊性能的直接途徑，並透過調整阻尼來補償重量和彈簧剛度的差異，從而保持相同的懸吊響應、感覺和行為。<br/></span><img alt="" height="200" src="./../images/計概w7.PNG" width="372"/><img alt="" height="150" src="./../images/計概w7-1.PNG" width="142"/></p>
+<br />w6 << <a href='w6.html'>Previous</a> <a href='W8.html'>Next</a> >> W8</div>
         
     <!-- footer -->
       <div class="container">
