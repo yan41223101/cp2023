@@ -2,6 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,9 +142,48 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='w4.html'>Next</a> >> w4<br /><h1>About</h1>
-<p><a href="https://github.com/mdecycu/cmsite"> https://github.com/mdecycu/cmsite</a></p>
-<br /> <a href='w4.html'>Next</a> >> w4</div>
+    <div id="tipue_search_content">各國國旗 << <a href='各國國旗.html'>Previous</a> <a href='Thai.html'>Next</a> >> Thai<br /><h1>Italian</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+ 
+int main() {
+    int width = 300;  // 宽度
+    int height = 200; // 高度
+ 
+    gdImagePtr image = gdImageCreateTrueColor(width, height);
+ 
+    if (image == NULL) {
+        printf("Failed to create image.\n");
+        return 1;
+    }
+ 
+    // 确定颜色索引
+    int green = gdImageColorAllocate(image, 0, 128, 0);
+    int white = gdImageColorAllocate(image, 255, 255, 255);
+    int red = gdImageColorAllocate(image, 255, 0, 0);
+ 
+    // 填充颜色
+    gdImageFilledRectangle(image, 0, 0, width / 3, height, green);
+    gdImageFilledRectangle(image, width / 3, 0, (width / 3) * 2, height, white);
+    gdImageFilledRectangle(image, (width / 3) * 2, 0, width, height, red);
+ 
+    FILE *outputFile;
+    outputFile = fopen("./../images/italian_flag.png", "wb");
+ 
+    if (outputFile == NULL) {
+        printf("Failed to open file for writing.\n");
+        return 1;
+    }
+ 
+    gdImagePng(image, outputFile);
+    fclose(outputFile);
+ 
+    gdImageDestroy(image);
+ 
+    return 0;
+}</pre>
+<p><img alt="" height="200" src="./../images/italian_flag.png" width="300"/></p>
+<br />各國國旗 << <a href='各國國旗.html'>Previous</a> <a href='Thai.html'>Next</a> >> Thai</div>
         
     <!-- footer -->
       <div class="container">

@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w4.html'>w4</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='W7.html'>W7</a><li><a href='W8.html'>W8</a><li><a href='W12.html'>W12</a><li><a href='W13.html'>W13</a><li><a href='W15.html'>W15</a><li><a href='W16.html'>W16</a><li class='has-children'><a href='ANSIC.html'>ANSIC</a><ul class='dropdown'><li><a href='1..html'>1.</a><li><a href='2..html'>2.</a><li><a href='3..html'>3.</a><li><a href='4..html'>4.</a><li><a href='5..html'>5.</a><li><a href='6..html'>6.</a><li><a href='7..html'>7.</a><li><a href='8..html'>8.</a><li><a href='9..html'>9.</a><li><a href='10..html'>10.</a></li></ul><li><a href='各國國旗.html'>各國國旗</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w4.html'>w4</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='W7.html'>W7</a><li><a href='W8.html'>W8</a><li><a href='W12.html'>W12</a><li><a href='W13.html'>W13</a><li><a href='W15.html'>W15</a><li><a href='W16.html'>W16</a><li class='has-children'><a href='ANSIC.html'>ANSIC</a><ul class='dropdown'><li><a href='1..html'>1.</a><li><a href='2..html'>2.</a><li><a href='3..html'>3.</a><li><a href='4..html'>4.</a><li><a href='5..html'>5.</a><li><a href='6..html'>6.</a><li><a href='7..html'>7.</a><li><a href='8..html'>8.</a><li><a href='9..html'>9.</a><li><a href='10..html'>10.</a></li></ul><li class='has-children'><a href='各國國旗.html'>各國國旗</a><ul class='dropdown'><li><a href='Italian.html'>Italian</a><li><a href='Thai.html'>Thai</a></li></ul><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,47 +142,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">10. << <a href='10..html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>各國國旗</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-#include &lt;gd.h&gt;
- 
-int main() {
-    int width = 300;  // 宽度
-    int height = 200; // 高度
- 
-    gdImagePtr image = gdImageCreateTrueColor(width, height);
- 
-    if (image == NULL) {
-        printf("Failed to create image.\n");
-        return 1;
-    }
- 
-    // 确定颜色索引
-    int green = gdImageColorAllocate(image, 0, 128, 0);
-    int white = gdImageColorAllocate(image, 255, 255, 255);
-    int red = gdImageColorAllocate(image, 255, 0, 0);
- 
-    // 填充颜色
-    gdImageFilledRectangle(image, 0, 0, width / 3, height, green);
-    gdImageFilledRectangle(image, width / 3, 0, (width / 3) * 2, height, white);
-    gdImageFilledRectangle(image, (width / 3) * 2, 0, width, height, red);
- 
-    FILE *outputFile;
-    outputFile = fopen("./../images/italian_flag.png", "wb");
- 
-    if (outputFile == NULL) {
-        printf("Failed to open file for writing.\n");
-        return 1;
-    }
- 
-    gdImagePng(image, outputFile);
-    fclose(outputFile);
- 
-    gdImageDestroy(image);
- 
-    return 0;
-}</pre>
-<p><img alt="" height="200" src="./../images/italian_flag.png" width="300"/></p><br />10. << <a href='10..html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+    <div id="tipue_search_content">10. << <a href='10..html'>Previous</a> <a href='Italian.html'>Next</a> >> Italian<br /><h1>各國國旗</h1>
+<br />10. << <a href='10..html'>Previous</a> <a href='Italian.html'>Next</a> >> Italian</div>
         
     <!-- footer -->
       <div class="container">

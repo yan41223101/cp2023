@@ -932,7 +932,48 @@ int main() {
 }</pre>
 <p><img alt="" height="150" src="/images/replit-10.png" width="517"/></p>
 <h1>各國國旗</h1>
-<h1>Brython</h1>
+<h2>Italian</h2>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+ 
+int main() {
+    int width = 300;  // 宽度
+    int height = 200; // 高度
+ 
+    gdImagePtr image = gdImageCreateTrueColor(width, height);
+ 
+    if (image == NULL) {
+        printf("Failed to create image.\n");
+        return 1;
+    }
+ 
+    // 确定颜色索引
+    int green = gdImageColorAllocate(image, 0, 128, 0);
+    int white = gdImageColorAllocate(image, 255, 255, 255);
+    int red = gdImageColorAllocate(image, 255, 0, 0);
+ 
+    // 填充颜色
+    gdImageFilledRectangle(image, 0, 0, width / 3, height, green);
+    gdImageFilledRectangle(image, width / 3, 0, (width / 3) * 2, height, white);
+    gdImageFilledRectangle(image, (width / 3) * 2, 0, width, height, red);
+ 
+    FILE *outputFile;
+    outputFile = fopen("./../images/italian_flag.png", "wb");
+ 
+    if (outputFile == NULL) {
+        printf("Failed to open file for writing.\n");
+        return 1;
+    }
+ 
+    gdImagePng(image, outputFile);
+    fclose(outputFile);
+ 
+    gdImageDestroy(image);
+ 
+    return 0;
+}</pre>
+<p><img alt="" height="200" src="/images/italian_flag.png" width="300"/></p>
+<h2>Thai</h2><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
